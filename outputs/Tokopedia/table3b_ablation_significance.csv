@@ -1,0 +1,7 @@
+step,component,mean_delta,p_value,significant_0.05
+A0 -> A1,A1  + StandardScaler,-0.05403255651941019,0.001953125,True
+A1 -> A2,A2  + PCA (95% variance),0.03879030956148499,0.001953125,True
+A2 -> A3,A3  XGBoost replaces LR,-0.04506969277841333,0.001953125,True
+A3 -> A4,A4  + cost-sensitive weighting,0.018306014008810267,0.00390625,True
+A4 -> A5,A5  + hybrid ensemble XGB+LR,0.046793770239287324,0.001953125,True
+A5 -> A6,A6  + XGBoost ensemble kembali  (= ME-XBAL+XGB),-0.0003790847633569072,1.0,False

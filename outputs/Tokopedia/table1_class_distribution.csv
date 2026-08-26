@@ -1,0 +1,7 @@
+Emotion,Entire dataset,Train split,Validation split,Test split
+Anger,699,454,105,140
+Fear,920,598,138,184
+Happy,1770,1151,265,354
+Love,809,526,121,162
+Sadness,1202,781,180,241
+TOTAL,5400,3510,809,1081

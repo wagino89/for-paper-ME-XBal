@@ -1,0 +1,3 @@
+Setting,Training languages,Threshold tuned on,Evaluation,Supported claim
+S1 — Supervised multilingual,Sundanese + Javanese + Indonesian (train split masing-masing),Validation split bahasa target,Test split bahasa target,Efektivitas imbalance handling
+S2 — Zero-shot cross-lingual,Sundanese saja,Validation Sundanese (bahasa sumber),SELURUH data Javanese & Indonesian (tidak pernah dilatih),Cross-lingual transfer

@@ -1,0 +1,24 @@
+Item,Value
+Encoder (proposed),"xlm-roberta-base — frozen, cached embeddings, no fine-tuning"
+Encoder (baseline),"indobenchmark/indobert-base-p1 — frozen, own scaler/PCA"
+Sentence pooling,masked mean pooling over last_hidden_state
+Max sequence length,128
+Dimensionality reduction,"PCA, n_components=0.95 (fit on train only)"
+Feature scaling,StandardScaler (fit on train only)
+XGBoost,"{""max_depth"": 3, ""min_child_weight"": 5, ""learning_rate"": 0.05, ""n_estimators"": 200, ""subsample"": 0.8, ""colsample_bytree"": 0.8, ""reg_alpha"": 0.1, ""reg_lambda"": 1.5, ""objective"": ""binary:logistic"", ""eval_metric"": ""logloss"", ""verbosity"": 0, ""n_jobs"": -1}"
+Cost sensitivity,"scale_pos_weight = n_neg / n_pos, computed on train only"
+Logistic Regression,"C=0.1, L2, lbfgs, max_iter=1000, class_weight=balanced"
+Ensemble weights,XGB 0.70 / LR 0.30
+Threshold grid,"0.15–0.85 step 0.01, tuned on validation"
+Split,"train 0.65 / val 0.15 / test 0.20, MultilabelStratifiedShuffleSplit"
+Seeds,"[42, 7, 13, 77, 101, 202, 303, 404, 505, 606]"
+Significance test,"Wilcoxon signed-rank over seeds, alpha=0.05"
+SHAP,"Partition explainer, Text masker r'\W+', max_evals=300, explained function = ensemble probability before thresholding"
+Python,3.12.13
+torch,2.11.0+cu128
+transformers,5.13.1
+scikit-learn,1.6.1
+xgboost,3.3.0
+shap,0.52.0
+numpy,2.0.2
+pandas,2.2.2

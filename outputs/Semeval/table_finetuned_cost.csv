@@ -1,0 +1,2 @@
+model,train_time_s_mean,train_time_s_std,infer_ms_per_sample_mean,n_seeds,gpu
+XLM-R fine-tuned (end-to-end),189.51026384680017,38.369943511270144,3.4920091918522878,10,Tesla T4

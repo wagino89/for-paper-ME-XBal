@@ -1,0 +1,23 @@
+Item,Value
+Dataset,"PRDECT-ID Dataset.csv — 5400 reviews, 5 classes"
+Encoder (proposed),"xlm-roberta-base — frozen, cached embeddings, no fine-tuning"
+Encoder (baseline),"indobenchmark/indobert-base-p1 — frozen, own scaler/PCA"
+Sentence pooling,masked mean pooling over last_hidden_state
+Max sequence length,128
+Dimensionality reduction,PCA n_components=0.95 (fit on train only)
+Feature scaling,StandardScaler (fit on train only)
+XGBoost,"{""max_depth"": 3, ""min_child_weight"": 5, ""learning_rate"": 0.05, ""n_estimators"": 200, ""subsample"": 0.8, ""colsample_bytree"": 0.8, ""reg_alpha"": 0.1, ""reg_lambda"": 1.5, ""objective"": ""multi:softprob"", ""eval_metric"": ""mlogloss"", ""verbosity"": 0, ""n_jobs"": -1}"
+Cost sensitivity,compute_sample_weight('balanced') on train only
+Logistic Regression,"C=0.1, L2, lbfgs, max_iter=1000, class_weight=balanced"
+Ensemble weight,searched on validation over grid 0.00-1.00 step 0.05
+Class-prior calibration,"coordinate ascent on validation, alpha in [0.5, 3.0] step 0.05, 3 passes, ties broken toward alpha=1"
+Split,"train 0.65 / val 0.15 / test 0.20, StratifiedShuffleSplit"
+Seeds,"[42, 7, 13, 77, 101, 202, 303, 404, 505, 606]"
+Significance test,"Wilcoxon signed-rank over seeds, alpha=0.05"
+SHAP,"Partition explainer, Text masker, max_evals=300"
+Python,3.12.13
+torch,2.10.0+cu128
+transformers,5.0.0
+scikit-learn,1.6.1
+xgboost,3.2.0
+shap,0.51.0
